@@ -27,6 +27,7 @@ class Property(models.Model):
         ('east', 'East'),
         ('west', 'West'),
     ], default='north')
+    owner_id = fields.Many2one('owner') #owner has many properties, property has 1 owner.
 
     # Data Tier validations, strongest level of validation [level 1].
     _sql_constraints = [
