@@ -1,0 +1,73 @@
+<odoo>
+<!--    Tree View-->
+    <record id="tag_view_tree" model="ir.ui.view">
+        <field name="name">tag tree</field>
+
+        <!--same as "_name" defined in the tag model-->
+        <field name="model">tag</field>
+        <field name="arch" type="xml">
+
+            <!-- Presentation Tier validation [Level 3], not recommended -->
+            <!-- Only applied on presentation tier, so you can override the constraints from the logic tier. -->
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+<!--Creating an action automatically creates default tree view [Name column only], form view and search view.-->
+    <record  id="tag_action" model="ir.actions.act_window">
+        <field name="name">tag Action</field>
+
+        <!--same as "_name" defined in the tag model-->
+        <field name="res_model">tag</field>
+    </record>
+
+    <menuitem
+        id="tag_menu_item"
+        name="Properties-sub"
+        parent="conf_menu"
+        action="tag_action"
+    />
+
+    <!--    Form View-->
+    <record id="tag_view_form" model="ir.ui.view">
+        <field name="name">tag form</field>
+        <field name="model">tag</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <!-- No group tag, so we have to create our own label -->
+                    <!-- Bootstrap class "oe_title" -->
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <field name="name"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--    Search View-->
+<!--    default search is using the name field, so you need to have a name defined in your model,-->
+<!--    if you don't have it, the search defaults to the id field-->
+        <record id="tag_view_search" model="ir.ui.view">
+        <field name="name">tag search</field>
+
+        <!--same as "_name" defined in the tag model-->
+        <field name="model">tag</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+
+                <!-- Tuple: [('garden', '=', True)] -->
+                <filter name="has_garden" string="Has Garden" domain="[('garden', '=', True)]"/>
+                <filter name="has_garage" string="Has Garage" domain="[('garage', '=', True)]"/>
+                <filter name="has_garage" string="No Garage" domain="[('garage', '=', False)]"/>
+
+                <!-- Dictionary: {'group_by':'garden'} -->
+                <filter name="group_garden" string="Garden" context="{'group_by':'garden'}"/>
+            </search>
+        </field>
+    </record>
+</odoo>

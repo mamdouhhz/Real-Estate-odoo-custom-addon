@@ -9,4 +9,10 @@
         name="Properties"
         parent="real_estate_root_menu"
     />
+
+    <menuitem
+        id="conf_menu"
+        name="Configurations"
+        parent="real_estate_root_menu"
+    />
 </odoo>

@@ -6,10 +6,14 @@
         <!--same as "_name" defined in the property model-->
         <field name="model">property</field>
         <field name="arch" type="xml">
+
+            <!-- Presentation Tier validation [Level 3], not recommended -->
+            <!-- Only applied on presentation tier, so you can override the constraints from the logic tier. -->
             <tree>
                 <field name="name"/>
                 <field name="description" optional="1"/>
                 <field name="postcode" optional="1"/>
+                <field name="owner_id"/>
                 <field name="date_availability"/>
                 <field name="expected_price"/>
                 <field name="selling_price"/>
@@ -56,9 +60,9 @@
                     <!-- Group tag creates a default label for each field -->
                     <group>
                         <group string="General Info.">
-                            <field name="description"/>
+                            <field name="description" required="1"/> <!-- Presentation Tier validation [Level 3], not recommended -->
                             <field name="postcode"/>
-                            <field name="date_availability"/>
+                            <field name="date_availability" required="1"/> <!--Presentation  Tier validation [Level 3], not recommended -->
                             <field name="expected_price"/>
                             <field name="selling_price"/>
                             <field name="bedrooms"/>
@@ -71,6 +75,7 @@
                             <field name="garden"/>
                             <field name="garden_area"/>
                             <field name="garden_orientation"/>
+                            <field name="owner_id"/>
                         </group>
                     </group>
                 </sheet>
