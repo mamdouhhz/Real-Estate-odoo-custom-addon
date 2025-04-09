@@ -26,6 +26,7 @@
             <!-- Only applied on presentation tier, so you can override the constraints from the logic tier. -->
             <tree>
                 <field name="name"/>
+                <field name="state"/>
                 <field name="description" optional="1"/>
                 <field name="postcode" optional="1"/>
                 <field name="owner_id"/>
@@ -50,6 +51,13 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <header>
+<!--                        statusbar_visible="draft, sold"  -->
+                        <field name="state" widget="statusbar" options="{'clickable': 1}"/>
+                        <button name="action_draft" type="object" class="btn-primary" string="Set to Draft" invisible="state== 'draft'"/>
+                        <button name="action_pending" type="object" class="btn-primary" string="Set to Pending" invisible="state != 'draft'"/>
+                        <button name="action_sold" type="object" class="btn-success  " string="Sold" invisible="state!= 'pending'"/>
+                    </header>
                     <!-- No group tag, so we have to create our own label -->
                     <!-- Bootstrap class "oe_title" -->
                     <div class="oe_title">

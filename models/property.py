@@ -30,6 +30,14 @@ class Property(models.Model):
     owner_id = fields.Many2one('owner') # owner has many properties, property has 1 owner.
     tag_ids = fields.Many2many('tag') # only 'Many2one' is added to the database table. 'Many2many' makes a new table.
 
+    # the best practice is to be named "state" and type is selection.
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('pending', 'Pending'),
+        ('sold', 'Sold'),
+    ], default='draft')
+
+    # ------------------------------------------------------------------- Constraints ------------------------------------------------------------------------
     # Data Tier validations, strongest level of validation [level 1].
     _sql_constraints = [
         # constraint name, constraint, UI message
@@ -43,10 +51,23 @@ class Property(models.Model):
             if rec.bedrooms == 0:
                 raise ValidationError('please add a valid number of bedrooms')
 
+    def action_draft(self):
+        for rec in self:
+            rec.write({'state': 'draft'})
+            print("inside draft method")
+
+    def action_pending(self):
+        for rec in self:
+            rec.write({'state': 'pending'})
+            print("inside pending method")
+
+    def action_sold(self):
+        for rec in self:
+            rec.write({'state': 'sold'})
+            print("inside sold method")
 
     # ------------------------------------------------------------------- CRUD Operations ------------------------------------------------------------------------
     # ----------------------------------------------------- They are inherited from the bas model "Model". -------------------------------------------------------
-
     # any function takes first argument as "self".
     # These are override demonstrations without actual implementation.
 
@@ -75,12 +96,12 @@ class Property(models.Model):
         print("inside write method")
         return res
 
-    # 4) Delete.
-    # mesh sha8ala bettala3 error.
-    # Test it by just refreshing the tree view.
-    @api.model
-    def unlink(self):
-        res = super(Property, self).unlink()
-        print("inside unlink method")
-        return res
+    # # 4) Delete.
+    # # mesh sha8ala bettala3 error.
+    # # Test it by just refreshing the tree view.
+    # @api.model
+    # def unlink(self):
+    #     res = super(Property, self).unlink()
+    #     print("inside unlink method")
+    #     return res
     # ------------------------------------------------------------------------------------------------------------------------------------------------------------
