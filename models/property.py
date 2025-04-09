@@ -53,7 +53,7 @@ class Property(models.Model):
 
     def action_draft(self):
         for rec in self:
-            rec.write({'state': 'draft'})
+            rec.state = 'draft'
             print("inside draft method")
 
     def action_pending(self):
