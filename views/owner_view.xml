@@ -1,4 +1,20 @@
 <odoo>
+
+<!--Creating an action automatically creates default tree view [Name column only], form view and search view.-->
+    <record  id="owner_action" model="ir.actions.act_window">
+        <field name="name">owner Action</field>
+
+        <!--same as "_name" defined in the owner model-->
+        <field name="res_model">owner</field>
+    </record>
+
+    <menuitem
+        id="owner_menu_item"
+        name="owners-sub"
+        parent="conf_menu"
+        action="owner_action"
+    />
+
 <!--    Tree View-->
     <record id="owner_view_tree" model="ir.ui.view">
         <field name="name">owner  tree</field>
@@ -16,21 +32,6 @@
             </tree>
         </field>
     </record>
-
-<!--Creating an action automatically creates default tree view [Name column only], form view and search view.-->
-    <record  id="owner_action" model="ir.actions.act_window">
-        <field name="name">owner Action</field>
-
-        <!--same as "_name" defined in the owner model-->
-        <field name="res_model">owner</field>
-    </record>
-
-    <menuitem
-        id="owner_menu_item"
-        name="owners-sub"
-        parent="conf_menu"
-        action="owner_action"
-    />
 
     <!--    Form View-->
     <record id="owner_view_form" model="ir.ui.view">
@@ -52,7 +53,6 @@
                             <field name="phone" required="1"/> <!-- Presentation Tier validation [Level 3], not recommended -->
                             <field name="address"/>
                         </group>
-
                         <group>
                             <field name="property_ids" widget="many2many_tags"/>
                         </group>

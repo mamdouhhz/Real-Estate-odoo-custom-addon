@@ -10,8 +10,8 @@
         'views/base_menu.xml',
         'views/property_view.xml',
         'security/ir.model.access.csv',
-        # 'views/owner_view.xml',
-        # 'views/tag_view.xml',
+        'views/owner_view.xml',
+        'views/tag_view.xml',
     ],
     "application": True,
 }

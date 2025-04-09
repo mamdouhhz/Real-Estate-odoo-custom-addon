@@ -1,4 +1,19 @@
 <odoo>
+    <!--Creating an action automatically creates default tree view [Name column only], form view and search view.-->
+    <record  id="property_action" model="ir.actions.act_window">
+        <field name="name">Property Action</field>
+
+        <!--same as "_name" defined in the property model-->
+        <field name="res_model">property</field>
+    </record>
+
+    <menuitem
+        id="property_menu_item"
+        name="Properties-sub"
+        parent="properties_menu"
+        action="property_action"
+    />
+
 <!--    Tree View-->
     <record id="property_view_tree" model="ir.ui.view">
         <field name="name">property tree</field>
@@ -27,21 +42,6 @@
             </tree>
         </field>
     </record>
-
-<!--Creating an action automatically creates default tree view [Name column only], form view and search view.-->
-    <record  id="property_action" model="ir.actions.act_window">
-        <field name="name">Property Action</field>
-
-        <!--same as "_name" defined in the property model-->
-        <field name="res_model">property</field>
-    </record>
-
-    <menuitem
-        id="property_menu_item"
-        name="Properties-sub"
-        parent="properties_menu"
-        action="property_action"
-    />
 
     <!--    Form View-->
     <record id="property_view_form" model="ir.ui.view">
@@ -76,6 +76,7 @@
                             <field name="garden_area"/>
                             <field name="garden_orientation"/>
                             <field name="owner_id"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
                         </group>
                     </group>
                 </sheet>
@@ -86,7 +87,7 @@
 <!--    Search View-->
 <!--    default search is using the name field, so you need to have a name defined in your model,-->
 <!--    if you don't have it, the search defaults to the id field-->
-        <record id="property_view_search" model="ir.ui.view">
+    <record id="property_view_search" model="ir.ui.view">
         <field name="name">property search</field>
 
         <!--same as "_name" defined in the property model-->

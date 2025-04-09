@@ -8,7 +8,7 @@ class Property(models.Model):
 
     # table columns with Logic Tier Validations [level 2].
     # Logic Tier Validations are applied on both presentation and logic tier.
-    name = fields.Char(required=True, default='New', size=4) #default of required is false, we can say 1 for true or 0 for false
+    name = fields.Char(required=True, default='New') #default of required is false, we can say 1 for true or 0 for false
     description = fields.Char()
     postcode = fields.Char(required=1)
     date_availability = fields.Date()
@@ -26,8 +26,9 @@ class Property(models.Model):
         ('south', 'South'),
         ('east', 'East'),
         ('west', 'West'),
-    ], default='north')
-    owner_id = fields.Many2one('owner') #owner has many properties, property has 1 owner.
+    ], default='south')
+    owner_id = fields.Many2one('owner') # owner has many properties, property has 1 owner.
+    tag_ids = fields.Many2many('tag') # only 'Many2one' is added to the database table. 'Many2many' makes a new table.
 
     # Data Tier validations, strongest level of validation [level 1].
     _sql_constraints = [
@@ -50,7 +51,7 @@ class Property(models.Model):
     # These are override demonstrations without actual implementation.
 
     # 1) Create.
-    # Overriding the "Create" method of the super class Model.
+    # Overriding the "Create" method of the super class Model, applies on all CRUD functions.
     @api.model_create_multi # or @api.model
     def _create(self, data_list):
         # models.Model._create(self, data_list)
