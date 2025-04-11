@@ -24,7 +24,7 @@
 
             <!-- Presentation Tier validation [Level 3], not recommended -->
             <!-- Only applied on presentation tier, so you can override the constraints from the logic tier. -->
-            <tree>
+            <tree class="header_custom">
                 <field name="name"/>
                 <field name="state"/>
                 <field name="description" optional="1"/>

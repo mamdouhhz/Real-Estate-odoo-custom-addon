@@ -13,5 +13,8 @@
         'views/owner_view.xml',
         'views/tag_view.xml',
     ],
+    'assets': {
+        'web.assets_backend': ['real_estate/static/src/css/property.css']
+    },
     "application": True,
 }
