@@ -6,6 +6,7 @@
     "depends": [
         "base"
     ],
+
     "data": [
         'views/base_menu.xml',
         'views/property_view.xml',
@@ -13,8 +14,10 @@
         'views/owner_view.xml',
         'views/tag_view.xml',
     ],
+
     'assets': {
         'web.assets_backend': ['real_estate/static/src/css/property.css']
     },
+
     "application": True,
 }

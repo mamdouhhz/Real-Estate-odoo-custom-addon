@@ -1,0 +1,11 @@
+
+Video 34:
+https://youtu.be/xJeP-XKcK1c?si=7el7VdK14KXEI-jK
+
+    Types Inheritance in odoo:
+        1. Python Inheritance. [2 Types].
+        2. Model Inheritance or Prototype Inheritance (Delegation Inheritance). [3 Types].
+        3. View Inheritance.
+
+    Modularity:
+        - Integrate Modules together.
